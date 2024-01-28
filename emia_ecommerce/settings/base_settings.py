@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # External apps
     'rest_framework',
     # Internal apps
+    'emia_ecommerce.product'
 ]
 
 MIDDLEWARE = [
