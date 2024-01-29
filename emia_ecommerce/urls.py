@@ -1,22 +1,29 @@
-"""
-URL configuration for emia_ecommerce project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+from rest_framework.routers import DefaultRouter
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+from emia_ecommerce.product import views 
+
+router = DefaultRouter()
+router.register(r"category", views.CategoryViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), 
+    path('api/', include(router.urls)),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/docs/', SpectacularSwaggerView.as_view(url_name='schema')),
 ]
+
+
+feat(api): configure API routes and documentation using Django Rest Framework and drf-spectacular
+
+This commit sets up API routes for the 'Category' model using Django Rest Framework's DefaultRouter. Additionally, it integrates drf-spectacular to generate API schemas and documentation endpoints.
+
+Summary of Changes:
+- Configured a DefaultRouter for 'Category' views in the 'product' app.
+- Defined API routes under '/api/' to include CRUD operations for 'Category' instances.
+- Added 'SpectacularAPIView' and 'SpectacularSwaggerView' for API schema generation and interactive documentation.
+- Enhanced the project's API capabilities and documentation features.
+
+These changes improve the organization and accessibility of API endpoints while providing comprehensive documentation through drf-spectacular.
