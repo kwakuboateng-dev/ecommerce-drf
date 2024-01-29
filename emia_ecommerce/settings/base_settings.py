@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # External apps
     'rest_framework',
+    'drf_spectacular',
     # Internal apps
-    'emia_ecommerce.product'
+    'emia_ecommerce.product',
 ]
 
 MIDDLEWARE = [
@@ -115,4 +116,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {}
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'}
+
+SPETAULAR_SETTINGS = {
+    'TITLE': 'Emia DRF Ecommerce API'
+                      }
