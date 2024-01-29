@@ -6,7 +6,7 @@ from .models import Category
 from .serializers import CategorySerializer
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ViewSet):
     """
     A viewset for viewing category instances.   
     """
